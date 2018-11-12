@@ -803,12 +803,13 @@ export default class PatientSearch
 
         // prepare the base options for the patient ajax request
         let options = {
-            url: `${server.url}/Patient/_search`,
-            method: "POST",
+            url: `${server.url}/patient/`,
+            method: "GET",
             processData: false,
             data,
             headers: {
-                accept: "application/json+fhir"
+                accept: "application/json+fhir",
+                Authorization:'bearer token'
             }
         };
 

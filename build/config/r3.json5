@@ -1,7 +1,7 @@
 {
     server: {
         type: "STU-3",
-        url: "https://r3.smarthealthit.org",
+        url: "http://192.168.0.245:3000/v1/resources",
         tags: [
             {
                 key  : "pro-7-2017",
