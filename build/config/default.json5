@@ -1,7 +1,7 @@
 {
     server: {
         type: "STU-3",
-        url: "http://192.168.0.245:3000/v1/resources",
+        url: "/v1/resources",
         tags: [
             {
                 key  : "pro-7-2017",

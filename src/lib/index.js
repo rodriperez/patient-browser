@@ -425,14 +425,14 @@ export function getBundleURL(bundle, rel) {
     let nextLink = bundle.link;
     if (nextLink) {
         nextLink = nextLink.find(l => l.relation === rel);
-        return nextLink && nextLink.url ? nextLink.url.replace('https://r3.smarthealthit.org/','http://192.168.0.245:3000') : null
+        return nextLink && nextLink.url ? nextLink.url.replace('https://r3.smarthealthit.org/','') : null
     }
     return null;
 }
 
 export function request(options) {
     options = typeof options == "string" ? { url : options } : options || {};
-    options.url = options.url.replace('https://r3.smarthealthit.org/','http://192.168.0.245:3000');
+    options.url = options.url.replace('https://r3.smarthealthit.org/','');
     let cfg = $.extend(true, options, {
         headers: {
             Accept: "application/json+fhir"
@@ -460,13 +460,13 @@ export function getAllPages(options, result = []) {
     return request(options).then(bundle => {
         (bundle.entry || []).forEach(item => {
             if (item.fullUrl && result.findIndex(o => (o.fullUrl === item.fullUrl)) == -1) {
-                item.fullUrl = item.fullUrl.replace('https://r3.smarthealthit.org/','http://192.168.0.245:3000');
+                item.fullUrl = item.fullUrl.replace('https://r3.smarthealthit.org/','');
                 result.push(item);
             }
         })
         let nextUrl = getBundleURL(bundle, "next");
         if (nextUrl) {
-            return getAllPages({ ...options, url: nextUrl.replace('https://r3.smarthealthit.org/','http://192.168.0.245:3000') }, result);
+            return getAllPages({ ...options, url: nextUrl.replace('https://r3.smarthealthit.org/','') }, result);
         }
         return result;
     });
